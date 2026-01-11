@@ -581,7 +581,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &725678933
 SpriteRenderer:
@@ -659,6 +659,7 @@ MonoBehaviour:
   speed: 8
   maxInitialAngle: 0.6
   maxInitialY: 4
+  speedMultiplier: 1.1
   startX: 0
 --- !u!1001 &756176059
 PrefabInstance:
@@ -1051,7 +1052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5960931873516240909, guid: 38d3b8674f673964cb216358a406016b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 480
+      value: 544.64
       objectReference: {fileID: 0}
     - target: {fileID: 5960931873516240909, guid: 38d3b8674f673964cb216358a406016b, type: 3}
       propertyPath: m_AnchoredPosition.y

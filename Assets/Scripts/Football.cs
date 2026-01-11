@@ -9,6 +9,7 @@ public class Football : MonoBehaviour
     public float speed = 2f;
     public float maxInitialAngle = 0.6f;
     public float maxInitialY = 4f;
+    public float speedMultiplier = 1.1f;
 
     public float startX = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,26 +37,29 @@ public class Football : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // When the football collides with a paddle, log the event, then increase speed
+        Paddle paddle = collision.collider.GetComponent<Paddle>();
+        if (paddle){
+            Debug.Log("Football: Collided with Paddle " + paddle.id);
+             
+            rb.linearVelocity *= speedMultiplier;
+        }
         
 
         // Increase speed by 10% on each collision
         if (rb != null)
         {
-            if(GetSpeed() < 25f){
-                rb.linearVelocity *= 1.1f;
-            } else {
-                rb.linearVelocity *= 1f;
-            }
+            
+            rb.linearVelocity *= speedMultiplier;
+        
         }
         else
         {
             rb = GetComponent<Rigidbody2D>();
             if (rb != null){
-                if(GetSpeed() < 25f){
-                    rb.linearVelocity *= 1.1f;
-                    } else {
-                        rb.linearVelocity *= 1f;
-                    }
+                
+                rb.linearVelocity *= speedMultiplier;
+                   
             }
             else Debug.LogWarning("Football: Rigidbody2D is null in OnCollisionEnter2D.");
         }
