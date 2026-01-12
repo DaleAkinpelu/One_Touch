@@ -50,6 +50,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   id: 0
   moveSpeed: 8
+  resetPositionsOnGameReset: 1
 --- !u!50 &872685702077911693
 Rigidbody2D:
   serializedVersion: 5

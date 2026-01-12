@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class Football : MonoBehaviour
 {
-    public GameManager gameManager;
     public Rigidbody2D rb;
     public float speed = 2f;
     public float maxInitialAngle = 0.6f;
     public float maxInitialY = 4f;
     public float speedMultiplier = 1.1f;
 
+    public bool startFromCenter = true;
+
+    private Vector3 startPosition; 
+
     public float startX = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (rb == null)
-        {
-            rb = GetComponent<Rigidbody2D>();
-            if (rb == null) Debug.LogWarning("Football: Rigidbody2D not found on this GameObject.");
-        }
-        if (gameManager == null)
-        {
-            gameManager = FindFirstObjectByType<GameManager>();
-            if (gameManager == null) Debug.LogWarning("Football: GameManager not assigned and none found in scene.");
-        }
+        // if (rb == null)
+        // {
+        //     rb = GetComponent<Rigidbody2D>();
+        //     if (rb == null) Debug.LogWarning("Football: Rigidbody2D not found on this GameObject.");
+        // }
+        // if (gameManager == null)
+        // {
+        //     gameManager = FindFirstObjectByType<GameManager>();
+        //     if (gameManager == null) Debug.LogWarning("Football: GameManager not assigned and none found in scene.");
+        // }
 
         InitialPush();
+        GameManager.instance.onResetGame += ResetBall;
     }
 
     // Update is called once per frame
@@ -80,26 +84,36 @@ public class Football : MonoBehaviour
         {
             
         Debug.Log("Goal Scored!");
-        if (gameManager != null)
-        {
-            gameManager.OnScoreZoneReached(scoreZone.id);
-        }
-        else
-        {
-            Debug.LogWarning($"Football: gameManager is null. Cannot notify score zone {scoreZone.id}.");
-        }
+        GameManager.instance.OnScoreZoneReached(scoreZone.id);
+        // // if (GameManager != null)
+        // // {
+        // // }
+        // // else
+        // // {
+        // //     Debug.LogWarning($"Football: gameManager is null. Cannot notify score zone {scoreZone.id}.");
+        // // }
 
         // StartCoroutine(Delay());
         
         // Reset position and speed when entering a goal area
-        ResetBall();
-        InitialPush();
         }
     }
 
     private void ResetBall()
     {
-        float posY = Random.Range(-maxInitialY, maxInitialY);
+        ResetBallPosition();
+        InitialPush();
+    }
+
+    private void ResetBallPosition()
+    {
+        float posY;
+        
+        if(startFromCenter){
+            posY = 0f;
+        } else{
+            posY = Random.Range(-maxInitialY, maxInitialY);
+        }
         Vector2 position = new Vector2(startX, posY);
         transform.position = position;
         if (rb != null)
