@@ -29,8 +29,8 @@ public class Football : MonoBehaviour
         //     if (gameManager == null) Debug.LogWarning("Football: GameManager not assigned and none found in scene.");
         // }
 
-        InitialPush();
         GameManager.instance.onResetGame += ResetBall;
+        GameManager.instance.gameUI.onStartGame += ResetBall;
     }
 
     // Update is called once per frame
@@ -108,7 +108,7 @@ public class Football : MonoBehaviour
     private void ResetBallPosition()
     {
         float posY;
-        
+
         if(startFromCenter){
             posY = 0f;
         } else{

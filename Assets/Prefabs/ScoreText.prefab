@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8554581183222276930}
   - component: {fileID: 958102247697270887}
   - component: {fileID: 2652757978246892392}
+  - component: {fileID: 9023014771190432264}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -77,8 +78,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4288721982
+  m_fontColor: {r: 0.8584906, g: 0.20652366, b: 0.20652366, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -153,3 +154,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreText
   text: {fileID: 958102247697270887}
+  animator: {fileID: 9023014771190432264}
+--- !u!95 &9023014771190432264
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924145642418503329}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 10e28f113ddd55f46a3ecd3621177f75, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

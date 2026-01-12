@@ -6,6 +6,12 @@ using TMPro;
 public class ScoreText : MonoBehaviour
 {
     public TextMeshProUGUI text;
+    public Animator animator;
+
+    public void Highlight()
+    {
+        animator.SetTrigger("highlight");
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
