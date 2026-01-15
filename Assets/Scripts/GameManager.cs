@@ -6,10 +6,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public GameUI gameUI;
     public int scorePlayer1, scorePlayer2;
 
-    public ScoreText scoreTextLeft, scoreTextRight;
     public Action onResetGame;
+
+    public int maxScore = 5;
 
     private void Awake()
     {
@@ -19,11 +22,11 @@ public class GameManager : MonoBehaviour
         } else
         {
             instance = this;
+            gameUI.onStartGame += OnStartGame;
         }
     }
     public void OnScoreZoneReached(int id)
     {
-        onResetGame?.Invoke();
 
         if (id == 1)
         {
@@ -34,12 +37,32 @@ public class GameManager : MonoBehaviour
             scorePlayer2++;
         }
 
-        UpdateScores();
+        gameUI.UpdateScores(scorePlayer1, scorePlayer2);
+        gameUI.HighlightScoreText(id);
+        CheckWin();
     }
 
-    private void UpdateScores()
+    private void CheckWin()
     {
-        scoreTextLeft.SetScore(scorePlayer1);
-        scoreTextRight.SetScore(scorePlayer2);
+        int winnerId = scorePlayer1 >= maxScore ? 1 : scorePlayer2 >= maxScore ? 2 : 0;
+        if (winnerId != 0)
+        {
+            Debug.Log("GameManager: Player " + winnerId + " wins!");
+            // Implement win logic here (e.g., display win screen, reset game, etc.)
+            gameUI.OnGameEnds(winnerId);
+        } else
+        {
+            onResetGame?.Invoke();
+            
+        }
     }
+
+    private void OnStartGame()
+    {
+        scorePlayer1 = 0;
+        scorePlayer2 = 0;
+        gameUI.UpdateScores(scorePlayer1, scorePlayer2);
+    }
+
+
 }
