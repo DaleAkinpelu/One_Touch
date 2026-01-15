@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameUI gameUI;
+
+    public GameAudio gameAudio;
     public int scorePlayer1, scorePlayer2;
 
     public Action onResetGame;
@@ -50,9 +52,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("GameManager: Player " + winnerId + " wins!");
             // Implement win logic here (e.g., display win screen, reset game, etc.)
             gameUI.OnGameEnds(winnerId);
+            gameAudio.PlayWinSound();
         } else
         {
             onResetGame?.Invoke();
+            gameAudio.PlayScoreSound();
             
         }
     }

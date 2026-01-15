@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 281a2e5e8d923b642ad696f0460027d0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - asSounds: {instanceID: 0}
+  - WalkingSound: {fileID: 8300000, guid: 36b07f72a80763643891e2ec70dbd166, type: 3}
+  - PowerUpSound: {fileID: 8300000, guid: ff7e5abd2255ca8448f55030103c789d, type: 3}
+  - ScoreSound: {fileID: 8300000, guid: 3eab37b5072577b47a9f87fb008569ed, type: 3}
+  - WinSound: {fileID: 8300000, guid: 82c7bf253ac874447a5ab54a873aefcc, type: 3}
+  - StartGameSound: {fileID: 8300000, guid: 82c7bf253ac874447a5ab54a873aefcc, type: 3}
+  - CollisionSound: {fileID: 8300000, guid: 57028347364a5484490a60f1db676164, type: 3}
+  - BallMovingSound: {fileID: 8300000, guid: c0069dce469499843a8c9a5b57ed64ea, type: 3}
+  - backgroundMusic: {fileID: 8300000, guid: 85b263f1cf9ef674cbd0495f61b4af02, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

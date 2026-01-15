@@ -5,6 +5,8 @@ using UnityEngine;
 public class Football : MonoBehaviour
 {
     public Rigidbody2D rb;
+
+    public BallAudio ballAudio;
     public float speed = 2f;
     public float maxInitialAngle = 0.6f;
     public float maxInitialY = 4f;
@@ -41,10 +43,13 @@ public class Football : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         // When the football collides with a paddle, log the event, then increase speed
-        Paddle paddle = collision.collider.GetComponent<Paddle>();
-        if (paddle){
-            Debug.Log("Football: Collided with Paddle " + paddle.id);
+        Player player = collision.collider.GetComponent<Player>();
+        if (player){
+            // Play Audio Clip on Collision
+            ballAudio.PlayCollisionSound();
+            Debug.Log("Football: Collided with Paddle " + player.id);
              
             rb.linearVelocity *= speedMultiplier;
         }
