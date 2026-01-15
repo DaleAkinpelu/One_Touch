@@ -12,14 +12,9 @@ public class GameAudio : MonoBehaviour
     public AudioClip ScoreSound;
     public AudioClip WinSound;
     public AudioClip StartGameSound;
-    public AudioClip CollisionSound;
-    public AudioClip BallMovingSound;
     public AudioClip backgroundMusic;
 
-    public void PlayCollisionSound()
-    {
-        asSounds.PlayOneShot(CollisionSound);
-    }
+
     
     public void PlayWalkingSound()
     {
@@ -44,10 +39,6 @@ public class GameAudio : MonoBehaviour
     public void PlayStartGameSound()
     {
         asSounds.PlayOneShot(StartGameSound);
-    }
-    public void PlayBallMovingSound()
-    {
-        asSounds.PlayOneShot(BallMovingSound);
     }
 
     // public void PlayBackgroundMusic()
