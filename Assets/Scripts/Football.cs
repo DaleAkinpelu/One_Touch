@@ -7,6 +7,7 @@ public class Football : MonoBehaviour
     public Rigidbody2D rb;
 
     public BallAudio ballAudio;
+    public ParticleSystem collisionParticle;
     public float speed = 2f;
     public float maxInitialAngle = 0.6f;
     public float maxInitialY = 4f;
@@ -50,28 +51,39 @@ public class Football : MonoBehaviour
             // Play Audio Clip on Collision
             ballAudio.PlayCollisionSound();
             Debug.Log("Football: Collided with Paddle " + player.id);
+
+            EmitParticleEffect(10);
              
             rb.linearVelocity *= speedMultiplier;
         }
+
+        Wall wall = collision.collider.GetComponent<Wall>();
+        if (wall){
+            // Play Audio Clip on Collision
+            ballAudio.PlayCollisionSound();
+            // Debug.Log("Football: Collided with Wall " + wall.id);
+
+            EmitParticleEffect(5);
+        }
         
 
-        // Increase speed by 10% on each collision
-        if (rb != null)
-        {
+        // // Increase speed by 10% on each collision
+        // if (rb != null)
+        // {
             
-            rb.linearVelocity *= speedMultiplier;
+        //     rb.linearVelocity *= speedMultiplier;
         
-        }
-        else
-        {
-            rb = GetComponent<Rigidbody2D>();
-            if (rb != null){
+        // }
+        // else
+        // {
+        //     rb = GetComponent<Rigidbody2D>();
+        //     if (rb != null){
                 
-                rb.linearVelocity *= speedMultiplier;
+        //         rb.linearVelocity *= speedMultiplier;
                    
-            }
-            else Debug.LogWarning("Football: Rigidbody2D is null in OnCollisionEnter2D.");
-        }
+        //     }
+        //     else Debug.LogWarning("Football: Rigidbody2D is null in OnCollisionEnter2D.");
+        // }
     }
 
     private float GetSpeed()
@@ -140,10 +152,12 @@ public class Football : MonoBehaviour
         if (rb != null)
         {
             rb.linearVelocity = initialDirection * speed;
+            EmitParticleEffect(20);
         }
         else
         {
             rb = GetComponent<Rigidbody2D>();
+            EmitParticleEffect(20);
             if (rb != null) rb.linearVelocity = initialDirection * speed;
             else Debug.LogWarning("Football: Rigidbody2D is null in InitialPush.");
         }
@@ -152,5 +166,10 @@ public class Football : MonoBehaviour
     IEnumerator Delay()
     {
         yield return new WaitForSeconds(5);
+    }
+
+    private void EmitParticleEffect(int amount)
+    {
+        collisionParticle.Emit(amount);
     }
 }
