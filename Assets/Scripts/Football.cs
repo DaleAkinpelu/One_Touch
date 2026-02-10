@@ -53,6 +53,7 @@ public class Football : MonoBehaviour
             Debug.Log("Football: Collided with Paddle " + player.id);
 
             EmitParticleEffect(10);
+            GameManager.instance.ScreenShake.StartShake(Mathf.Sqrt(rb.linearVelocity.magnitude) * 0.02f, 0.075f);
              
             rb.linearVelocity *= speedMultiplier;
         }
@@ -64,6 +65,8 @@ public class Football : MonoBehaviour
             // Debug.Log("Football: Collided with Wall " + wall.id);
 
             EmitParticleEffect(5);
+            GameManager.instance.ScreenShake.StartShake(0.033f, 0.033f);
+
         }
         
 
@@ -102,6 +105,8 @@ public class Football : MonoBehaviour
             
         Debug.Log("Goal Scored!");
         GameManager.instance.OnScoreZoneReached(scoreZone.id);
+        GameManager.instance.ScreenShake.StartShake(0.33f, 0.1f);
+
         // // if (GameManager != null)
         // // {
         // // }

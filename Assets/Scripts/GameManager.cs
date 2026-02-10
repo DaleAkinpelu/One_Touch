@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameAudio gameAudio;
     public int scorePlayer1, scorePlayer2;
-
+    public Shake ScreenShake;
     public Action onResetGame;
 
     public int maxScore = 5;
