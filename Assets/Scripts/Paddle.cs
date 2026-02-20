@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public bool isDashing = false;
+    public float currentInput;
     public int id;
     public float moveSpeed = 2f;
     public bool resetPositionsOnGameReset = true;
@@ -37,14 +39,19 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        float movement = ProcessInput();
-        Move(movement);
+        currentInput = ProcessInput(id);
     }
 
-    private float ProcessInput()
+    private void FixedUpdate()
+    {
+        if(isDashing) return;
+        Move(currentInput);
+    }
+
+    public float ProcessInput(int playerID)
     {
         float movement = 0f;
-        switch (id)
+        switch (playerID)
         {
             case 1:
                 movement = Input.GetAxis("MovePlayer1");
@@ -53,6 +60,8 @@ public class Player : MonoBehaviour
              case 2:
                 movement = Input.GetAxis("MovePlayer2");
                 break;
+            default:
+                return 0f;
         }
 
         return movement;
