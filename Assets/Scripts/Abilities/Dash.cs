@@ -15,7 +15,7 @@ public class Dash : Ability
         Rigidbody2D rb = parent.GetComponent<Rigidbody2D>(); 
         Player player = parent.GetComponent<Player>();
         
-        float input = player.currentInput;;
+        float input = player.currentInput;
 
         if (input == 0) return; // If there is no input, do not activate the dash
 
